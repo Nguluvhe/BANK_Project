@@ -1,0 +1,37 @@
+﻿@model IEnumerable<UFS_BANK_FINAL.Models.Account>
+@{
+    ViewBag.Title = "Financial Advisor - Manage Accounts";
+}
+
+<h2>Manage Banking Accounts</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account Number</th>
+            <th>Account Holder</th>
+            <th>Balance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in Model)
+        {
+                <tr>
+                    <td>@account.AccountNumber</td>
+                    <td>@account.CustomerName</td>
+                    <td>@account.Balance</td>
+                    <td>
+                        <a asp-action="ProvideAdvice" asp-route-accountNumber="@account.AccountNumber" class="btn btn-primary">Provide Advice</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>

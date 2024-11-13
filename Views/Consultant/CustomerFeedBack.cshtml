@@ -1,0 +1,28 @@
+﻿@model IEnumerable<UFS_BANK_FINAL.Models.Feedback>
+@{
+    ViewBag.Title = "Feedback List";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Account Number</th>
+                <th>Message</th>
+        </thead>
+        <tbody>
+            @foreach (var feedback in Model)
+            {
+                <tr>
+                    <td>@feedback.AccountNumber</td>
+                    <td>@feedback.Message</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>
+

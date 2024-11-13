@@ -1,0 +1,98 @@
+﻿@model UFS_BANK_FINAL.Models.Account
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="text-center">
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            <script>
+                window.location = '@Url.Action("Index", "Admin")';
+            </script>
+        }
+        else if (User.IsInRole("Consultant"))
+        {
+            <script>
+                window.location = '@Url.Action("Index", "Admin")';
+            </script>
+        }
+        else if (User.IsInRole("FinancialAdvisor"))
+        {
+            <script>
+                window.location = '@Url.Action("Index", "FinancialAdvisor")';
+            </script>
+        }
+        else if (User.IsInRole("Client"))
+        {
+            <div >
+                <p>
+                    Account Number: @Model.AccountNumber  Balance: R @Model.Balance
+                </p>
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-header">
+                        Transfer
+                    </div>
+                    <div class="card-body">
+                        <p>Perform a money transfer to another account.</p>
+                        <a asp-controller="Banking" asp-action="Transfer" class="btn">Go to Transfer</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        Deposit
+                    </div>
+                    <div class="card-body">
+                        <p>Deposit funds into your account.</p>
+                        <a asp-controller="Banking" asp-action="Deposit" class="btn">Go to Deposit</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        My Profile
+                    </div>
+                    <div class="card-body">
+                        <p>View and update your profile details.</p>
+                        <a asp-controller="Banking" asp-action="Profile"
+                           asp-route-id="@Model.Customer.CustomerID"
+                           asp-route-accountNumber="@Model.AccountNumber"
+                        class="btn">View Profile</a>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-header">
+                        Transactions
+                    </div>
+                    <div class="card-body">
+                        <p>View your transaction history.</p>
+                        <a asp-controller="Banking" asp-action="Transactions" 
+                        asp-route-accountNumber="@Model.AccountNumber" class="btn">View Transactions</a>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="feedback-section">
+                <h3>Give Your Feedback</h3>
+                <form asp-controller="Consultant" asp-action="SubmitFeedback" method="post">
+                    <input type="hidden" name="AccountNumber" value="@Model.AccountNumber" />
+                    <div class="form-group">
+                        <label for="feedbackMessage">Your Feedback:</label>
+                        <textarea id="feedbackMessage" name="feedbackMessage" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </form>
+            </div>
+        }
+    }
+    else
+    {
+        <h2 class="display-4">Welcome to the University of Free State Bank.</h2>
+    }
+</div>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<UFS_BANK_FINAL.Models.Customer>
+@{
+    ViewBag.Title = "Customer List";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>CustomerName</th>
+                <th>Account Number</th>
+                <th>Balance</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>PostCode</th>
+                <th>Role</th>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                foreach (var account in customer.Accounts) 
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="EditCustomer"
+                               asp-route-id="@customer.CustomerID"
+                               asp-route-accountNumber="@account.AccountNumber">Edit</a>
+                        </td>
+                        <td>
+                            <a asp-action="DeleteCustomer"
+                               asp-route-id="@customer.CustomerID">Delete</a>
+                        </td>
+                        <td>@customer.CustomerName</td>
+                        <td>@account.AccountNumber</td>
+                        <td>@account.Balance.ToString("C")</td>
+                        <td>@customer.Email</td>
+                        <td>@customer.Address</td>
+                        <td>@customer.City</td>
+                        <td>@customer.PostCode</td>
+                        <td>@customer.Role</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>

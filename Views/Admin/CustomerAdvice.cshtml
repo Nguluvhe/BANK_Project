@@ -1,0 +1,29 @@
+﻿@model IEnumerable<UFS_BANK_FINAL.Models.Account>
+@{
+    ViewBag.Title = "Customer Advice"; 
+}
+
+<h2>Customer Advice</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Account Number</th>
+            <th>Account Holder</th>
+            <th>Balance</th>
+            <th>Advice</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in Model)
+        {
+            <tr>
+                <td>@account.AccountNumber</td>
+                <td>@account.CustomerName</td>
+                <td>@account.Balance</td>
+                <td>@account.Advice</td> 
+            </tr>
+        }
+    </tbody>
+</table>
+

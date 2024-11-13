@@ -1,0 +1,17 @@
+﻿@model UFS_BANK_FINAL.Models.Account
+
+@{
+    ViewBag.Title = "Provide Advice";
+}
+
+<h2>Provide Financial Advice</h2>
+
+<form asp-action="ProvideAdvice" method="post">
+    <input type="hidden" asp-for="@Model.AccountNumber" />
+    <div class="form-group">
+        <label for="Advice" class="control-label">Advice:</label>
+        <textarea id="Advice" name="Advice" class="form-control" required></textarea>
+        <span asp-validation-for="Advice" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Advice</button>
+</form>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UFS BANK FINAL", "UFS BANK FINAL.csproj", "{29471BAD-7DFD-440C-BE81-C519826BD92C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29471BAD-7DFD-440C-BE81-C519826BD92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29471BAD-7DFD-440C-BE81-C519826BD92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29471BAD-7DFD-440C-BE81-C519826BD92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29471BAD-7DFD-440C-BE81-C519826BD92C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D2781D27-71D9-468C-883A-A40E6CA4FF1C}
+	EndGlobalSection
+EndGlobal

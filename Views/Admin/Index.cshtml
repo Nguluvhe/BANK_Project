@@ -1,0 +1,41 @@
+﻿<div class="card-container">
+    <div class="card">
+        <div class="card-header">
+            Create User
+        </div>
+        <div class="card-body">
+            <a asp-controller="Admin" asp-action="CreateUser" class="btn">Create</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Customer List
+        </div>
+        <div class="card-body">
+            <a asp-controller="Admin" asp-action="CustomerList" class="btn">List</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            View Account Advice
+        </div>
+        <div class="card-body">
+            <a asp-controller="Admin" asp-action="CustomerAdvice" class="btn">View Advice</a>
+        </div>
+    </div>
+</div>
+<div class="card-container">
+    @if (User.IsInRole("Consultant"))
+    {
+        <div class="card">
+            <div class="card-header">
+                Feedback from customers
+            </div>
+            <div class="card-body">
+                <a asp-controller="Consultant" asp-action="CustomerFeedBack" class="btn">View Feedback</a>
+            </div>
+        </div>
+    }
+</div>
