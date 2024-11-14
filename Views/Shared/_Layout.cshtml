@@ -23,6 +23,17 @@
                     <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
             </ul>
+            @if(User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Client"))
+                {
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Feedback" asp-action="Index">Feedback</a>
+                        </li>
+                    </ul>
+                }
+            }
 
             @if (!User.Identity.IsAuthenticated)
             {

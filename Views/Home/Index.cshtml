@@ -26,6 +26,8 @@
         }
         else if (User.IsInRole("Client"))
         {
+            if (Model != null)
+            {
             <div >
                 <p>
                     Account Number: @Model.AccountNumber  Balance: R @Model.Balance
@@ -76,19 +78,14 @@
                         asp-route-accountNumber="@Model.AccountNumber" class="btn">View Transactions</a>
                     </div>
                 </div>
-            </div>
-            <br />
-            <div class="feedback-section">
-                <h3>Give Your Feedback</h3>
-                <form asp-controller="Consultant" asp-action="SubmitFeedback" method="post">
-                    <input type="hidden" name="AccountNumber" value="@Model.AccountNumber" />
-                    <div class="form-group">
-                        <label for="feedbackMessage">Your Feedback:</label>
-                        <textarea id="feedbackMessage" name="feedbackMessage" class="form-control" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
-                </form>
-            </div>
+                </div>
+            }
+            else
+            {
+                <script>
+                    window.location = '@Url.Action("Login", "Account")';
+                </script>
+            }
         }
     }
     else

@@ -30,7 +30,10 @@ namespace UFS_BANK_FINAL.Controllers
             var account = await _context.Accounts
                                 .Include(a => a.Customer)
                                 .FirstOrDefaultAsync(a => a.UserId == user.UserName);
-
+            if (account == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
             return View(account);
         }

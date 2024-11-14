@@ -22,27 +22,5 @@ namespace UFS_BANK_FINAL.Controllers
 
             return View(feedbacks);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> SubmitFeedback(string feedbackMessage, int AccountNumber)
-        {
-            if (string.IsNullOrWhiteSpace(feedbackMessage))
-            {
-                return BadRequest("Feedback message cannot be empty.");
-            }
-
-            var feedback = new Feedback
-            {
-                AccountNumber = AccountNumber,
-                Message = feedbackMessage,
-                SubmitDate = DateTime.UtcNow
-            };
-
-            _context.Feedbacks.Add(feedback);
-            await _context.SaveChangesAsync();
-
-            TempData["FeedbackMessage"] = "Thank you for your feedback!";
-            return RedirectToAction("Index", "Home");
-        }
     }
 }
