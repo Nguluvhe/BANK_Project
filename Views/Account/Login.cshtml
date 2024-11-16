@@ -1,18 +1,81 @@
 ﻿@model LoginModel
 
-<h2>Log In</h2>
-<div class="text-danger" asp-validation-summary="ModelOnly"></div>
-<form asp-action="Login" asp-controller="Account" method="post">
-    <div class="form-group">
-        <label asp-for="UserName"></label>
-        <div><span asp-validation-for="UserName" class="text-danger"></span></div>
-        <input asp-for="UserName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <div><span asp-validation-for="Password" class="text-danger"></span></div>
-        <input asp-for="Password" class="form-control" />
-    </div>
-    <br />
-    <button class="btn btn-primary" type="submit">Log In</button>
-</form>
+<div class="login-container">
+    <h2 class="text-center">LOG IN</h2>
+    <div class="text-danger text-center" asp-validation-summary="ModelOnly"></div>
+    <form asp-action="Login" asp-controller="Account" method="post" class="login-form">
+        <div class="form-group mb-3">
+            <label asp-for="UserName" class="form-label">Username</label>
+            <input asp-for="UserName" class="form-control" placeholder="Enter your username" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group mb-3">
+            <label asp-for="Password" class="form-label">Password</label>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <button class="btn btn-primary px-4" type="submit">Log In</button>
+            <a asp-controller="Account" asp-action="ForgotPassword" class="text-muted">Forgot Password?</a>
+        </div>
+    </form>
+</div>
+
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .form-control {
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+    .text-danger {
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+
+    .text-muted {
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+        .text-muted:hover {
+            color: #0056b3;
+        }
+</style>
