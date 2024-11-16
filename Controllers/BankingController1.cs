@@ -54,10 +54,6 @@ namespace UFS_BANK_FINAL.Controllers
 
             return View();
         }
-
-
-
-
         [HttpPost]
         public async Task<IActionResult> Deposit(int accountNumber, double amount)
         {
