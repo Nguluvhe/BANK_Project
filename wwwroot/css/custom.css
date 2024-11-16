@@ -11,19 +11,30 @@ main {
     flex: 1;
 }
 
+.account-info p {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.account-info i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
 .card-container {
     display: flex;
-    justify-content: space-around;
-    margin: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .card {
     background-color: #f8f9fa;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin: 20px;
+    width: 22%;
+    margin: 10px;
     text-align: center;
     transition: 0.3s;
 }
@@ -35,15 +46,17 @@ main {
 .card-header {
     font-size: 24px;
     font-weight: bold;
-    background-color: #007bff;
-    color: white;
-    padding: 15px;
+    background-color: #f8f9fa;
+    color: black;
+    padding: 10px;
+    text-align: center;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 .card-body {
-    padding: 20px;
+    padding: 10px;
+    text-align: center;
 }
 
 .nav-link:hover {

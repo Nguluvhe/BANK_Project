@@ -28,56 +28,58 @@
         {
             if (Model != null)
             {
-            <div >
-                <p>
-                    Account Number: @Model.AccountNumber  Balance: R @Model.Balance
-                </p>
-            </div>
-            <div class="card-container">
-                <div class="card">
-                    <div class="card-header">
-                        Transfer
-                    </div>
-                    <div class="card-body">
-                        <p>Perform a money transfer to another account.</p>
-                        <a asp-controller="Banking" asp-action="Transfer" class="btn">Go to Transfer</a>
-                    </div>
+                <div class="account-info">
+                    <p>
+                        <i class="fas fa-credit-card"></i>
+                        <strong>Account Number:</strong> @Model.AccountNumber <br />
+                        <strong>Balance:</strong> R @Model.Balance
+                    </p>
                 </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        Deposit
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            Transfer
+                        </div>
+                        <div class="card-body">
+                            <p>Perform a money transfer to another account.</p>
+                            <a asp-controller="Banking" asp-action="Transfer" class="btn btn-primary">Go to Transfer</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>Deposit funds into your account.</p>
-                        <a asp-controller="Banking" asp-action="Deposit" class="btn">Go to Deposit</a>
-                    </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        My Profile
+                    <div class="card">
+                        <div class="card-header">
+                            Deposit
+                        </div>
+                        <div class="card-body">
+                            <p>Deposit funds into your account.</p>
+                            <a asp-controller="Banking" asp-action="Deposit" class="btn btn-primary">Go to Deposit</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>View and update your profile details.</p>
-                        <a asp-controller="Banking" asp-action="Profile"
-                           asp-route-id="@Model.Customer.CustomerID"
-                           asp-route-accountNumber="@Model.AccountNumber"
-                        class="btn">View Profile</a>
-                    </div>
-                </div>
 
+                    <div class="card">
+                        <div class="card-header">
+                            My Profile
+                        </div>
+                        <div class="card-body">
+                            <p>View and update your profile details.</p>
+                            <a asp-controller="Banking" asp-action="Profile"
+                               asp-route-id="@Model.Customer.CustomerID"
+                               asp-route-accountNumber="@Model.AccountNumber"
+                               class="btn btn-primary">View Profile</a>
+                        </div>
+                    </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        Transactions
+                    <div class="card">
+                        <div class="card-header">
+                            Transactions
+                        </div>
+                        <div class="card-body">
+                            <p>View your transaction history.</p>
+                            <a asp-controller="Banking" asp-action="Transactions"
+                               asp-route-accountNumber="@Model.AccountNumber" class="btn btn-primary">View Transactions</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p>View your transaction history.</p>
-                        <a asp-controller="Banking" asp-action="Transactions" 
-                        asp-route-accountNumber="@Model.AccountNumber" class="btn">View Transactions</a>
-                    </div>
-                </div>
                 </div>
             }
         }
@@ -87,3 +89,47 @@
         <h2 class="display-4">Welcome to the University of Free State Bank.</h2>
     }
 </div>
+
+<style>
+    .account-info p {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    .account-info i {
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+
+    .card-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        width: 22%;
+        margin: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        color: black;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .card-body {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+</style>
