@@ -46,6 +46,12 @@ main {
     padding: 20px;
 }
 
+.nav-link:hover {
+    color: #007bff; 
+    text-decoration: underline;
+}
+
+
 .btn {
     padding: 10px 20px;
     background-color: #28a745;
@@ -57,7 +63,8 @@ main {
 }
 
 .btn:hover {
-    background-color: #218838;
+    color: #007bff;
+    text-decoration: underline;
 }
 
 footer {
