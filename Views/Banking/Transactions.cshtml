@@ -21,8 +21,8 @@
             foreach (var transaction in Model)
             {
                 <tr>
-                    <td>@transaction.ModifyDate.ToString("dd/MM/yyyy")</td>
-                    <td>@transaction.DestAccount</td>
+                    <td>@transaction.ModifyDate.ToString("dd'/'MM'/'yyyy")</td>
+                    <td>@(transaction.DestAccount == 0 ? "Current Account" : transaction.DestAccount.ToString())</td>
                     <td>@transaction.Amount.ToString("C")</td>
                     <td>@transaction.TransactionType</td>
                 </tr>
