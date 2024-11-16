@@ -28,11 +28,35 @@ namespace UFS_BANK_FINAL.Controllers
         }
 
         // GET: Deposit
-        public IActionResult Deposit()
+        public async Task<IActionResult> Deposit()
         {
+            // Get the logged-in user by their username (this ensures the user is authenticated)
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                TempData["ErrorMessage"] = "User not authenticated.";
+                return View();
+            }
+
+            // Find the account associated with the user
+            var userAccount = await _context.Accounts
+                .FirstOrDefaultAsync(a => a.UserId == user.UserName);
+
+            if (userAccount == null)
+            {
+                TempData["ErrorMessage"] = "Account not found for the current user.";
+                return View();
+            }
+
+            // Pass the account number to the view so it can be populated in the form
+            ViewData["AccountNumber"] = userAccount.AccountNumber;
 
             return View();
         }
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> Deposit(int accountNumber, double amount)

@@ -7,11 +7,17 @@
         @TempData["SuccessMessage"]
     </div>
 }
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
 
 <form asp-action="Deposit" method="post" class="p-4 border rounded shadow-sm bg-light" style="max-width: 400px; margin: auto;">
     <div class="mb-3">
         <label class="form-label">Account Number:</label>
-        <input type="number" name="accountNumber" class="form-control" placeholder="Enter your account number" required />
+        <input type="number" name="accountNumber" class="form-control" value="@ViewData["AccountNumber"]" readonly required />
     </div>
     <div class="mb-3">
         <label class="form-label">Amount:</label>
