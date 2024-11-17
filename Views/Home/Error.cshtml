@@ -1,0 +1,19 @@
+﻿@using Microsoft.Extensions.Hosting
+@{
+    ViewData["Title"] = "Error";
+    var environment = Context.RequestServices.GetRequiredService<IWebHostEnvironment>();
+}
+
+<h1>Error</h1>
+<p>Something went wrong! We apologize for the inconvenience.</p>
+
+<p>If you continue to experience issues, please contact support.</p>
+
+<!-- Optionally display the exception details for debugging in development environment -->
+@if (environment.IsDevelopment())
+{
+    <div>
+        <h3>Details</h3>
+        <pre>@ViewData["ErrorMessage"]</pre>
+    </div>
+}

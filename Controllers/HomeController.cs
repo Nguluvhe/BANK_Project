@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,28 +20,22 @@ namespace UFS_BANK_FINAL.Controllers
             _context = context;
             _userManager = userManager;
         }
-        //public async Task<IActionResult> Index()
-        //{
-        //    Account account = null;
-        //    //if (!User.Identity.IsAuthenticated)
-        //    //{
-        //    //    return RedirectToAction("Login", "Account");
-        //    //}
 
-        //    //var user = await _userManager.FindByNameAsync(User.Identity.Name);
-        //    //var account = await _context.Accounts
-        //    //                    .Include(a => a.Customer)
-        //    //                    .FirstOrDefaultAsync(a => a.UserId == user.UserName);
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        var user = await _userManager.FindByNameAsync(User.Identity.Name);
-        //        var account = await _context.Accounts
-        //                            .Include(a => a.Customer)
-        //                            .FirstOrDefaultAsync(a => a.UserId == user.UserName);
-        //    }
+        [AllowAnonymous] // Allow access to this action even when the user is not authenticated
+        public IActionResult Error()
+        {
+            // You can retrieve the exception message here if you want to display it
+            var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerFeature>();
+            if (exceptionDetails != null)
+            {
+                var exception = exceptionDetails.Error;
+                // You can log the exception here if needed
+            }
 
-        //    return View(account);
-        //}
+            // Return the Error view
+            return View();
+        }
+
         public async Task<IActionResult> Index()
         {
             Account accountModel = null;
