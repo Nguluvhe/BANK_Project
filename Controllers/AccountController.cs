@@ -111,8 +111,8 @@ namespace UFS_BANK_FINAL.Controllers
                 TempData["InfoMessage"] = "Password reset failed. Please try again.";
                 return RedirectToAction("ForgotPassword");
             }
-
-            var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+            var decodedToken = WebUtility.UrlDecode(model.Token);
+            var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.Password);
             if (result.Succeeded)
             {
                 TempData["SuccessMessage"] = "Your password has been reset successfully.";

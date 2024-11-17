@@ -18,6 +18,17 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
       .AddEntityFrameworkStores<BankIdentityDbContext>()
       .AddDefaultTokenProviders();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit = true;               // Require at least one digit
+    options.Password.RequireLowercase = true;           // Require at least one lowercase letter
+    options.Password.RequireUppercase = false;           // Require at least one uppercase letter
+    options.Password.RequireNonAlphanumeric = true;    // Disable special character requirement
+    options.Password.RequiredLength = 6;               // Minimum length
+    options.Password.RequiredUniqueChars = 0;           // Unique characters
+});
+
+
 
 builder.Services.AddRouting(options =>
 {
