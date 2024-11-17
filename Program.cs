@@ -15,7 +15,8 @@ builder.Services.AddDbContext<BankIdentityDbContext>(options =>
 
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-      .AddEntityFrameworkStores<BankIdentityDbContext>();
+      .AddEntityFrameworkStores<BankIdentityDbContext>()
+      .AddDefaultTokenProviders();
 
 
 builder.Services.AddRouting(options =>

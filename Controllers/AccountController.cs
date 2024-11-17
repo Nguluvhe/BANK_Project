@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 using UFS_BANK_FINAL.Data;
 using UFS_BANK_FINAL.Models;
 using UFS_BANK_FINAL.Models.ViewModels;
@@ -33,6 +34,97 @@ namespace UFS_BANK_FINAL.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        // POST: ForgotPassword
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                TempData["InfoMessage"] = "If an account with this email exists, a reset link has been sent.";
+                return RedirectToAction("ForgotPasswordConfirmation");
+            }
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = WebUtility.UrlEncode(token);
+
+            var resetModel = new ResetPasswordModel
+            {
+                Email = user.Email,
+                Token = encodedToken
+            };
+
+            return View("ForgotPasswordConfirmation", resetModel);
+        }
+
+
+        // GET: ForgotPasswordConfirmation
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+        // GET: ResetPassword
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult ResetPassword(string email, string token)
+        {
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(token))
+            {
+                return BadRequest("Invalid password reset token or email.");
+            }
+
+            var model = new ResetPasswordModel { Email = email, Token = token };
+            return View(model);
+        }
+
+
+        // POST: ResetPassword
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                TempData["InfoMessage"] = "Password reset failed. Please try again.";
+                return RedirectToAction("ForgotPassword");
+            }
+
+            var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+            if (result.Succeeded)
+            {
+                TempData["SuccessMessage"] = "Your password has been reset successfully.";
+                return RedirectToAction("Login");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
         }
 
         [HttpPost]
